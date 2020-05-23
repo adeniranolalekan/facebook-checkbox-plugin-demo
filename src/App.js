@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+
+constructor(props) {
+    super(props);
+    this.handleClick=this.handleClick.bind(this)
+}
+handleClick(userRef){
+    console.log("received a userRef: ",userRef)
+    window.FB.AppEvents.logEvent('MessengerCheckboxUserConfirmation', null, {
+        'app_id': '291338738571430',
+        'page_id': '104295157968460',
+        'ref': 'just some values',
+        'user_ref':{userRef}
+    });
+}
+
+    render()
+    {
+        const userRef = Math.floor((Math.random() * 10000000000000) + 1)
+        console.log("user_ref is: ", userRef.toString())
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <h4>Welcome to Facebook checkbox plugin</h4>
+                </header>
+                Click the checbox below to recieves updates on your order
+                <form>
+                <div className="fb-messenger-checkbox"
+                     origin="https://76ace4f8.ngrok.io/"
+                    page_id="104295157968460"
+                    messenger_app_id="661504924397598"
+                    user_ref={userRef}
+                     allow_login="true"
+                        size=" medium"
+                        skin="dark"
+                        center_align="true" >
+                </div>
+                    <input type="button" onClick={(e)=>this.handleClick(userRef,e)} value="Confirm Opt-in"/>
+                </form>
+
+
+
+            </div>
+        );
+    }
 }
 
 export default App;

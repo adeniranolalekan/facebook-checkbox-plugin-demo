@@ -25,10 +25,42 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
   </head>
   <body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '661504924397598',
+        autoLogAppEvents : true,
+        xfbml:true,
+        version          : 'v2.6'
+      });
+      FB.Event.subscribe('messenger_checkbox', function(e) {
+        console.log("messenger_checkbox event");
+        console.log(e);
+
+        if (e.event == 'rendered') {
+          console.log("Plugin was rendered");
+        } else if (e.event == 'checkbox') {
+          var checkboxState = e.state;
+          console.log("Checkbox state: " + checkboxState);
+        } else if (e.event == 'not_you') {
+          console.log("User clicked 'not you'");
+        } else if (e.event == 'hidden') {
+          console.log("Plugin was hidden");
+        }
+
+      });
+
+    };
+  </script>
+
+  <script async defer src="//connect.facebook.net/en_US/sdk.js"></script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +71,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
   </body>
+
 </html>
