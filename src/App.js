@@ -31,7 +31,7 @@ class App extends Component{
                 Click the checbox below to recieves updates on your order
                 <form>
                     <div className="fb-messenger-checkbox"
-                         origin="https://9bd524c3.ngrok.io/"
+                         origin="https://checkbox-plugin.herokuapp.com/"
                          page_id="104295157968460"
                          messenger_app_id="661504924397598"
                          user_ref={userRef} >
