@@ -42,9 +42,6 @@ handleClick(userRef){
                 </div>
                     <input type="button" onClick={(e)=>this.handleClick(userRef,e)} value="Confirm Opt-in"/>
                 </form>
-
-
-
             </div>
         );
     }
